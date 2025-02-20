@@ -1,0 +1,92 @@
+# EKS Cluster Resources Description and Purpose
+
+## 1. S3 Backend Configuration
+- **Resources**: S3 Bucket, DynamoDB Table
+- **Purpose**: 
+  - The S3 bucket is used to store the Terraform state file, which keeps track of the resources managed by Terraform.
+  - The DynamoDB table is used to manage state locking, preventing concurrent modifications to the state file.
+
+## 2. AWS Provider
+- **Resources**: AWS Provider Configuration
+- **Purpose**: 
+  - The AWS provider configuration specifies the AWS region where the resources will be created.
+
+## 3. VPC Configuration
+- **Resources**: VPC
+- **Purpose**: 
+  - The VPC (Virtual Private Cloud) provides an isolated network environment for the EKS cluster.
+
+## 4. Private Subnets
+- **Resources**: Private Subnets
+- **Purpose**: 
+  - Private subnets are used to host the EKS nodes, ensuring that they are not directly accessible from the public internet.
+
+## 5. Public Subnets
+- **Resources**: Public Subnets
+- **Purpose**: 
+  - Public subnets are used to host the NAT gateways and can be used for other public-facing resources if needed.
+
+## 6. Internet Gateway
+- **Resources**: Internet Gateway
+- **Purpose**: 
+  - The Internet Gateway allows resources within the VPC to communicate with the public internet.
+
+## 7. Elastic IPs for NAT Gateways
+- **Resources**: Elastic IPs (EIPs)
+- **Purpose**: 
+  - Elastic IPs are used to provide static public IP addresses for the NAT gateways.
+
+## 8. NAT Gateways
+- **Resources**: NAT Gateways
+- **Purpose**: 
+  - NAT Gateways enable instances in the private subnets to connect to the internet while remaining inaccessible from the public internet.
+
+## 9. Public Route Table
+- **Resources**: Public Route Table
+- **Purpose**: 
+  - The public route table directs internet-bound traffic from the public subnets to the internet gateway.
+
+## 10. Private Route Tables
+- **Resources**: Private Route Tables
+- **Purpose**: 
+  - Private route tables direct internet-bound traffic from the private subnets to the NAT gateways.
+
+## 11. Private Route Table Associations
+- **Resources**: Private Route Table Associations
+- **Purpose**: 
+  - These associations link the private route tables to the private subnets.
+
+## 12. Public Route Table Associations
+- **Resources**: Public Route Table Associations
+- **Purpose**: 
+  - These associations link the public route table to the public subnets.
+
+## 13. IAM Role for EKS Cluster
+- **Resources**: IAM Role for EKS Cluster
+- **Purpose**: 
+  - The IAM role allows the EKS cluster to interact with other AWS services.
+
+## 14. IAM Role Policy Attachment for EKS Cluster
+- **Resources**: IAM Role Policy Attachment
+- **Purpose**: 
+  - The policy attachment grants the necessary permissions to the IAM role for the EKS cluster.
+
+## 15. EKS Cluster
+- **Resources**: EKS Cluster
+- **Purpose**: 
+  - The EKS cluster provides a managed Kubernetes environment for deploying and managing containerized applications.
+
+## 16. IAM Role for EKS Node Group
+- **Resources**: IAM Role for EKS Node Group
+- **Purpose**: 
+  - The IAM role allows the EKS nodes to interact with other AWS services.
+
+## 17. IAM Role Policy Attachments for EKS Node Group
+- **Resources**: IAM Role Policy Attachments
+- **Purpose**: 
+  - The policy attachments grant the necessary permissions to the IAM role for the EKS node group.
+
+## 18. EKS Node Groups
+- **Resources**: EKS Node Groups
+- **Purpose**: 
+  - Node groups are collections of EC2 instances that provide the computational resources for running Kubernetes workloads within the EKS cluster.
